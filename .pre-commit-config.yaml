@@ -1,0 +1,44 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint-ruff-check
+        name: 🐾 Lint Ruff Check
+        entry: make lint-ruff-check
+        language: system
+        types: [python]
+        stages: 
+          - pre-commit
+          - pre-push
+      - id: sec-detect-secrets-hook
+        name: 🔒 Lint Detect Secrets Hook
+        entry: make sec-detect-secrets-hook
+        language: system
+        always_run: true
+        stages: 
+          - pre-commit
+          - pre-push
+      - id: format-ruff-check
+        name: 🎨 Format Ruff Check
+        entry: make format-ruff-check
+        language: system
+        types: [python]
+        stages: 
+          - pre-commit
+          - pre-push
+      - id: typecheck-pyright
+        name: 🔍 Typecheck Pyright
+        entry: make typecheck-pyright
+        language: system
+        types: [python]
+        stages: 
+          - pre-commit
+          - pre-push
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.1.0 
+    hooks:
+      - id: commitizen
+        name: 📝 Commit Message Check
+      - id: commitizen-branch
+        stages:
+          - post-commit
+          - pre-push

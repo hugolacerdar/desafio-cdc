@@ -43,4 +43,12 @@ typecheck-pyright:
 commit:
 	cz commit
 
+migrations-list:
+	poetry run yoyo list
+
+migrations-apply:
+	poetry run yoyo apply
+
+migrations-create:
+	poetry run yoyo new --sql -m "${MESSAGE}"
 

@@ -5,6 +5,7 @@ from src.infra.data.database.abc import Database
 from src.infra.data.database.pg_database import PostgresDatabase
 from src.infra.data.repository.abc import Repository
 from src.infra.data.repository.pg_repository import PostgresRepository
+from src.use_cases.create_author import CreateAuthor
 from src.use_cases.get_system_status import GetSystemStatus
 
 
@@ -26,3 +27,9 @@ def resolve_get_system_status_use_case(
 	repository: Repository = Depends(resolve_repository),
 ) -> GetSystemStatus:
 	return GetSystemStatus(repository=repository)
+
+
+def resolve_create_author_use_case(
+	repository: Repository = Depends(resolve_repository),
+) -> CreateAuthor:
+	return CreateAuthor(repository=repository)

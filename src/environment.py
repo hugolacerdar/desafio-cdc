@@ -15,5 +15,9 @@ class Settings(BaseSettings):
 	db_port: int = Field(default=..., alias='DB_PORT')
 	db_name: str = Field(default=..., alias='DB_NAME')
 
+	@property
+	def db_url(self) -> str:
+		return f'postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}'
+
 
 settings = Settings()
